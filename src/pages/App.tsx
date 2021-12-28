@@ -22,31 +22,6 @@ const Container = styled.div`
   text-align: center;
 `;
 
-const CustomSnackbar = styled(Snackbar)`
-  position: absolute !important;
-  top: 0 !important;
-  display: block !important;
-  right: 0;
-  left: 50%;
-  right: 0;
-  width: 100%;
-
-  && div {
-    width: 35%;
-    float: right;
-    right: 0;
-  }
-  && div div {
-    width: 100% !important;
-  }
-
-  @media (min-width: 960px) {
-    left: 50%;
-    right: 0;
-    width: 100%;
-  }
-`;
-
 const App: React.FC<{}> = () => {
   const { messages, clearAllMessages, clearUniMessage, callMessages } =
     useMessage();
@@ -93,7 +68,8 @@ const App: React.FC<{}> = () => {
           <TableInfo data={messages} eventClear={clearUniMessage}></TableInfo>
         </Container>
       )}
-      <CustomSnackbar
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
         open={snackbar}
         autoHideDuration={2000}
         onClose={handleClose}
